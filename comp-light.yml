@@ -1,0 +1,5 @@
+light:
+  - platform: tuya
+    name: "Fan Light"
+    switch_datapoint: 20
+    id: fan_light

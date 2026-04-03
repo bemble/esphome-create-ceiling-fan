@@ -1,0 +1,12 @@
+esphome:
+  on_boot:
+    priority: -100
+    then:
+      - delay: 2s
+      - wait_until:
+          timeout: 30s
+          condition:
+            or:
+              - light.is_on: fan_light
+              - light.is_off: fan_light
+      - light.turn_off: fan_light
