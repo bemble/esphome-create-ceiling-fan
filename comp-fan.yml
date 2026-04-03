@@ -1,3 +1,5 @@
+tuya:
+
 fan:
   - platform: tuya
     name: "Ceiling Fan"
