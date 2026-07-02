@@ -4,6 +4,7 @@ esphome-create-ceiling-fan
 
 I own 4 ceiling Create DC ceiling fans, 3 with light, 1 with just a fan.
 I wanted to get rid of Tuya Smart Life. So I swapped the brain of these modules.
+I measured the power consumption of the ceiling fans, at their different speed and light power consumption, the firmware now embed these sensors you can use on energy dashboard.
 
 <img src="imgs/IMG_2112_1200x900.jpg" alt="Create module with my own ESP" width="500" />
 

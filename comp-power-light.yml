@@ -1,0 +1,38 @@
+sensor:
+  # Puissance instantanée (ventilateur + lumière)
+  - platform: template
+    name: "Power"
+    id: power
+    unit_of_measurement: "W"
+    device_class: power
+    state_class: measurement
+    accuracy_decimals: 1
+    update_interval: 10s
+    lambda: |-
+      // Conso moteur mesurée au Shelly PM (index = vitesse 1..6)
+      static const float fan_w[7] = {0.0f, 4.8f, 6.3f, 10.3f, 14.2f, 17.6f, 23.3f};
+      float p = 0.0f;
+      if (id(ceiling_fan).state) {
+        int spd = id(ceiling_fan).speed;
+        if (spd < 1) spd = 1;
+        if (spd > 6) spd = 6;
+        p += fan_w[spd];
+      }
+      if (id(fan_light).current_values.is_on()) {
+        p += 18.4f;            // lumière
+      }
+      return p;
+
+  # Consommation cumulée en kWh
+  - platform: integration
+    name: "Consumption"
+    id: consumption
+    sensor: power
+    time_unit: h
+    unit_of_measurement: "kWh"
+    device_class: energy
+    state_class: total_increasing
+    accuracy_decimals: 3
+    restore: true
+    filters:
+      - multiply: 0.001

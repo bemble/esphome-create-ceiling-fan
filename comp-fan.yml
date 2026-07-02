@@ -3,6 +3,7 @@ tuya:
 fan:
   - platform: tuya
     name: "Ceiling Fan"
+    id: ceiling_fan
     switch_datapoint: 60
     speed_datapoint: 62
     speed_count: 6
